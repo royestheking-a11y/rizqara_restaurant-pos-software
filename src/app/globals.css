@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --primary: #8B0000;
+  --primary-light: #A52A2A;
+  --primary-dark: #5C0000;
+  --primary-50: #FDF2F2;
+  --primary-100: #FDE8E8;
+  --primary-200: #F9C4C4;
+  --primary-300: #F09090;
+  --bg: #FFFFFF;
+  --surface: #FDF8F8;
+  --border: #F0E0E0;
+  --text: #1A0000;
+  --text-muted: #6B4C4C;
+  --success: #16A34A;
+  --warning: #D97706;
+  --info: #2563EB;
+  --danger: #DC2626;
+  --sidebar-width: 260px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--primary-50); }
+::-webkit-scrollbar-thumb { background: var(--primary-200); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* ── Sidebar ── */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
+  position: fixed;
+  left: 0; top: 0;
+  display: flex; flex-direction: column;
+  z-index: 50;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  background: var(--surface);
+}
+
+/* ── Cards ── */
+.card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(139,0,0,0.06);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover { box-shadow: 0 4px 20px rgba(139,0,0,0.12); transform: translateY(-1px); }
+
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  font-family: 'Inter', sans-serif;
+}
+.btn-primary:hover { background: var(--primary-light); transform: scale(1.02); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+.btn-outline:hover { background: var(--primary); color: white; }
+
+/* ── KPI Cards ── */
+.kpi-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 80px; height: 80px;
+  background: var(--primary-50);
+  border-radius: 0 0 0 80px;
+}
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 12px; font-weight: 600;
+}
+.badge-success { background: #DCFCE7; color: var(--success); }
+.badge-warning { background: #FEF3C7; color: var(--warning); }
+.badge-danger { background: #FEE2E2; color: var(--danger); }
+.badge-info { background: #DBEAFE; color: var(--info); }
+.badge-primary { background: var(--primary-100); color: var(--primary); }
+
+/* ── Table ── */
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th {
+  background: var(--primary-50);
+  color: var(--primary);
+  font-weight: 700;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+}
+.data-table tr:hover td { background: var(--primary-50); }
+
+/* ── Inputs ── */
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: white;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.form-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-100); }
+
+/* ── Modal overlay ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+}
+.modal-box {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  width: 95%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(139,0,0,0.2);
+}
+
+/* ── POS Specific ── */
+.menu-item-card {
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+.menu-item-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px rgba(139,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+.cart-panel {
+  background: white;
+  border-left: 1px solid var(--border);
+  height: 100%;
+  display: flex; flex-direction: column;
+}
+
+/* ── Status colors ── */
+.status-available { background: #DCFCE7; color: #16A34A; }
+.status-occupied { background: #FEE2E2; color: #DC2626; }
+.status-reserved { background: #FEF9C3; color: #CA8A04; }
+.status-cleaning { background: #DBEAFE; color: #2563EB; }
+
+/* ── Kitchen cards ── */
+.kitchen-card {
+  border-radius: 16px;
+  padding: 20px;
+  border: 2px solid;
+  position: relative;
+  overflow: hidden;
+}
+.kitchen-card-new { background: #FFF7ED; border-color: #F97316; }
+.kitchen-card-cooking { background: #FEF3C7; border-color: #D97706; }
+.kitchen-card-ready { background: #DCFCE7; border-color: #16A34A; }
+.kitchen-card-served { background: #F1F5F9; border-color: #94A3B8; }
+
+/* ── Animations ── */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+@keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-fade-in { animation: fadeIn 0.35s ease both; }
+.animate-slide-in { animation: slideIn 0.3s ease both; }
+.pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+
+/* ── Receipt ── */
+.receipt-paper {
+  background: white;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  padding: 24px;
+  max-width: 320px;
+  margin: 0 auto;
+}
